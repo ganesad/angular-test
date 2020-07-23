@@ -36,7 +36,11 @@ jobs:
       - deploy:
           name: List S3 bucket contents
           command: |
-            aws s3 ls s3://ganesha-serverless/
+            aws s3 ls s3://ganesha-serverless/dev/
+            aws s3 rm s3://ganesha-serverless/dev --recursive
+            aws s3 ls s3://ganesha-serverless/dev/
+            aws s3 cp angular-test s3://ganesha-serverless/dev/ --recursive --sse --storage-class ONEZONE_IA
+            aws s3 ls s3://ganesha-serverless/dev/
 
 workflows:
     build:
