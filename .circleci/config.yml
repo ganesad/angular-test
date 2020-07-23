@@ -15,12 +15,19 @@ jobs:
             - run: npm install
             # - run: npm test
             - run: npm run-script build --prod
+            - run: ls -lrt
+      - persist_to_workspace:
+          root: dist
+          paths:
+            -  .
   aws-s3:
     docker:
       - image: cimg/python:3.6
     environment:
       AWS_DEFAULT_REGION: us-east-1
     steps:
+      - attach_workspace:
+          at: .
       - aws-cli/setup:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
