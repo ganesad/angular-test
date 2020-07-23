@@ -13,7 +13,7 @@ jobs:
           steps:
             - run: npm install
             # - run: npm test
-            - run: npm build --prod
+            - run: npm run-script build --prod
 workflows:
     build-and-test:
       jobs:
