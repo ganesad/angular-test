@@ -15,8 +15,6 @@ jobs:
             - run: npm install
             # - run: npm test
             - run: npm run-script build --prod
-            # - run: ls -lrt
-            # - run: ls -lrt dist/angular-test/
       - persist_to_workspace:
           root: dist
           paths:
