@@ -15,7 +15,8 @@ jobs:
             - run: npm install
             # - run: npm test
             - run: npm run-script build --prod
-            - run: ls -lrt
+            # - run: ls -lrt
+            # - run: ls -lrt dist/angular-test/
       - persist_to_workspace:
           root: dist
           paths:
@@ -32,13 +33,10 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-region: AWS_DEFAULT_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-      - run: ls -lrt
       - deploy:
-          name: List S3 bucket contents
+          name: Upload to S3 bucket1
           command: |
-            aws s3 ls s3://ganesha-serverless/dev/
-            aws s3 rm s3://ganesha-serverless/dev --recursive
-            aws s3 ls s3://ganesha-serverless/dev/
+            aws s3 ls s3://ganesha-serverless/
             aws s3 cp angular-test s3://ganesha-serverless/dev/ --recursive --sse --storage-class ONEZONE_IA
             aws s3 ls s3://ganesha-serverless/dev/
 
