@@ -32,7 +32,7 @@ jobs:
           aws-region: AWS_DEFAULT_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
       - deploy:
-          name: Upload to S3 bucket1
+          name: Upload to S3 bucket
           command: |
             aws s3 ls s3://ganesha-serverless/dev/
             aws s3 rm s3://ganesha-serverless/dev/ --recursive
