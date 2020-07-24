@@ -14,7 +14,7 @@ jobs:
           steps:
             - run: npm install
             # - run: npm test
-            - run: npm run-script build --prod
+            - run: npm run-script build-prod
       - persist_to_workspace:
           root: dist
           paths:
@@ -34,7 +34,8 @@ jobs:
       - deploy:
           name: Upload to S3 bucket1
           command: |
-            aws s3 ls s3://ganesha-serverless/
+            aws s3 ls s3://ganesha-serverless/dev/
+            aws s3 rm s3://ganesha-serverless/dev/ --recursive
             aws s3 cp angular-test s3://ganesha-serverless/dev/ --recursive --sse --storage-class ONEZONE_IA
             aws s3 ls s3://ganesha-serverless/dev/
 
